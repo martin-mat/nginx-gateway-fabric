@@ -1,0 +1,31 @@
+---
+# CNTi Test Suite configuration for NGINX Gateway Fabric: the released chart,
+# with a Gateway from values so the controller creates the NGINX data plane.
+# The data-plane Deployment is found by the label the controller puts on it.
+config_version: "v2"
+common:
+  workload_resource_labels:
+    - key: gateway.networking.k8s.io/gateway-name
+      value: cnti
+      namespace: nginx-gateway
+  container_names:
+    # Retained release tags used by the rolling update, downgrade and
+    # rollback tests; the chart version is the tag under test.
+    - name: nginx-gateway
+      rolling_update_test_tag: "2.7.1"
+      rolling_downgrade_test_tag: "2.6.2"
+      rolling_version_change_test_tag: "2.7.1"
+      rollback_from_tag: "2.7.1"
+deployments:
+  manifests:
+    # The Gateway API CRDs are a prerequisite the chart does not carry.
+    - name: gateway-api-crds
+      manifest_directory: ci/gateway-api-crds
+      priority: 1
+  helm_charts:
+    - name: nginx-gateway-fabric
+      registry_url: oci://ghcr.io/nginx/charts/nginx-gateway-fabric
+      chart_version: 2.7.2
+      namespace: nginx-gateway
+      helm_values: --values ci/cnti-values.yaml
+      priority: 2

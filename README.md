@@ -1,3 +1,4 @@
+[![CNTi cert](https://github.com/nginx/nginx-gateway-fabric/actions/workflows/cnti.yml/badge.svg)](https://github.com/nginx/nginx-gateway-fabric/actions/workflows/cnti.yml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/nginx/nginx-gateway-fabric/badge)](https://scorecard.dev/viewer/?uri=github.com/nginx/nginx-gateway-fabric)
 [![Continuous Integration](https://github.com/nginx/nginx-gateway-fabric/actions/workflows/ci.yml/badge.svg)](https://github.com/nginx/nginx-gateway-fabric/actions/workflows/ci.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/nginx/nginx-gateway-fabric)](https://goreportcard.com/report/github.com/nginx/nginx-gateway-fabric)

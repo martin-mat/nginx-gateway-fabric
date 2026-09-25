@@ -1,0 +1,23 @@
+# Values for the CNTi Test Suite run (.github/workflows/cnti.yml): a Gateway so
+# the controller creates the NGINX data plane, resource limits on both planes,
+# and a ClusterIP data-plane service since nothing in the run needs a load
+# balancer.
+nginxGateway:
+  resources:
+    requests: {cpu: 100m, memory: 128Mi}
+    limits: {cpu: 500m, memory: 512Mi}
+nginx:
+  container:
+    resources:
+      requests: {cpu: 100m, memory: 128Mi}
+      limits: {cpu: 500m, memory: 512Mi}
+  service:
+    type: ClusterIP
+gateways:
+  - name: cnti
+    spec:
+      gatewayClassName: nginx
+      listeners:
+        - name: http
+          protocol: HTTP
+          port: 80
